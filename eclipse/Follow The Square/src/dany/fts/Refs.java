@@ -1,0 +1,9 @@
+package dany.fts;
+
+public class Refs
+{
+	public static final String ID = "FTS";
+	public static final String TRIM_NAME = "FollowTheSquare";
+	public static final String NAME = "Follow The Square";
+	public static final String LOG_FILE = "logs";
+}

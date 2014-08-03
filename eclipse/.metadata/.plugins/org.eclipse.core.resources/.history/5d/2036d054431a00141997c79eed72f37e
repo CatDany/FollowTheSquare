@@ -1,0 +1,8 @@
+package dany.fts.launch;
+
+import dany.fts.Game;
+
+public class Start
+{
+	public static Game theGame;
+}

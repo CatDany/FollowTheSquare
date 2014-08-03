@@ -1,0 +1,36 @@
+package dany.fts.launch;
+
+import dany.fts.Game;
+
+public class Start
+{
+	private static Game theGame;
+	
+	private Start() {}
+	
+	public static void main(String[] args)
+	{
+		theGame = new Game(args);
+	}
+	
+	/**
+	 * Get the game instance
+	 * WARNING! Use Game.instance() instead to get more correct information.
+	 * @return
+	 */
+	public static Game getGameInstance()
+	{
+		return theGame;
+	}
+	
+	/**
+	 * Set the game instance
+	 * Only used inside Game to prevent NullPointerException because that's how Java fields work
+	 * @param game
+	 * @return
+	 */
+	public static void setGameInstance(Game instance)
+	{
+		theGame = instance;
+	}
+}

@@ -1,0 +1,13 @@
+package dany.fts.input;
+
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+public class KeyHandler implements KeyListener
+{
+	@Override
+	public void keyPressed(KeyEvent e)
+	{
+		e.getKeyCode() == KeyEvent.VK_ESCAPE;
+	}
+}

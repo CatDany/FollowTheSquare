@@ -1,0 +1,18 @@
+package dany.fts.launch;
+
+import dany.fts.Game;
+
+public class Start
+{
+	private static Game theGame;
+	
+	public static Game getGameInstance()
+	{
+		return theGame;
+	}
+	
+	public static void setGameInstance(Game instance)
+	{
+		Start.theGame = instance;
+	}
+}

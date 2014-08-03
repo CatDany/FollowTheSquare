@@ -1,0 +1,9 @@
+package dany.fts.input;
+
+public class KeyActions
+{
+	public void keyEscape()
+	{
+		
+	}
+}

@@ -1,0 +1,13 @@
+package dany.fts.configuration;
+
+import java.util.HashMap;
+
+public class Configuration
+{
+	private final HashMap<String, String> configMap = new HashMap<String, String>();
+	
+	public String getString(String key)
+	{
+		return configMap.
+	}
+}

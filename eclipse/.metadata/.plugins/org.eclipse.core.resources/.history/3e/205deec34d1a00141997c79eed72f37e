@@ -1,0 +1,82 @@
+package dany.fts.logging;
+
+import java.io.File;
+import java.io.PrintStream;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import dany.fts.Refs;
+import dany.fts.misc.DateHelper;
+
+public class SimpleLogger
+{
+	private final String prefix;
+	private final File logFile;
+	
+	public SimpleLogger(String prefix, String logFolder)
+	{
+		this.prefix = prefix;
+		
+		File logFile = new File(logFolder + "\\" + DateHelper.getFormatedDate("yyyy-MM-dd-HH-mm-ss") + ".log");
+		if (!logFile.exists())
+		{
+			try
+			{
+				new File(logFolder).mkdir();
+				logFile.createNewFile();
+			}
+			catch (Throwable t)
+			{
+				t.printStackTrace();
+			}
+		}
+		
+		this.logFile = logFile;
+		
+		info("Logger initialized successfully.");
+	}
+	
+	private void writeToLog(String string)
+	{
+		try
+		{
+			PrintStream s = new PrintStream(logFile);
+			s.println(string);
+		}
+		catch (Throwable t)
+		{
+			System.err.println(String.format("Unable to write to log! String was '%s'", ));
+			t.printStackTrace();
+		}
+	}
+	
+	private void writeStackTraceToLog(Throwable t)
+	{
+		for (StackTraceElement i : t.getStackTrace())
+		{
+			writeToLog(i.toString());
+		}
+	}
+	
+	public void info(String message, Object... format)
+	{
+		System.out.println(String.format("[%s] [%s] ", DateHelper.getFormatedDate("yyyy-MM-dd HH:mm:ss"), prefix) + String.format(message, format));
+	}
+	
+	public void warn(String message, Object... format)
+	{
+		System.out.println(String.format("[%s] [WARNING!] [%s] ", DateHelper.getFormatedDate("yyyy-MM-dd HH:mm:ss"), prefix) + String.format(message, format));
+	}
+	
+	public void error(String message, Object... format)
+	{
+		System.err.println(String.format("[%s] [ERROR] [%s] ", DateHelper.getFormatedDate("yyyy-MM-dd HH:mm:ss"), prefix) + String.format(message, format));
+	}
+	
+	public void catching(Throwable t)
+	{
+		System.out.println(String.format("[%s] [CATCHING] [%s] ", DateHelper.getFormatedDate("yyyy-MM-dd HH:mm:ss"), prefix) + t.getMessage());
+		t.printStackTrace();
+	}
+}

@@ -1,0 +1,35 @@
+package dany.fts.launch;
+
+import dany.fts.Game;
+
+public class Start
+{
+	private static Game theGame;
+	
+	public static void main(String[] args)
+	{
+		
+	}
+	
+	/**
+	 * Get the game instance
+	 * WARNING! Use Game.instance() instead to get more correct information.
+	 * @return
+	 */
+	public static Game getGameInstance()
+	{
+		return theGame;
+	}
+	
+	/**
+	 * Set the game instance
+	 * Only used when the game starts
+	 * To get this instance use {@link Game}
+	 * @param instance
+	 * 
+	 */
+	public static void setGameInstance(Game instance)
+	{
+		Start.theGame = instance;
+	}
+}

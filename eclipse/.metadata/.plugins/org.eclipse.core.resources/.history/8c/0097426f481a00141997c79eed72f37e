@@ -1,0 +1,33 @@
+package dany.fts.misc;
+
+import java.util.Date;
+
+public class DateHelper
+{
+	/**
+	 * Formatting example:<br>
+	 * yyyy-MM-dd hh:mm:ss<br>
+	 * 2014-08-02 20:22:59
+	 * @param format
+	 * @return
+	 */
+	public static String getFormatedDate(String format)
+	{
+		return null;
+	}
+	
+	/**
+	 * Formatting example:<br>
+	 * yyyy-MM-dd hh:mm:ss<br>
+	 * 2014-08-02 20:22:59
+	 * @param format
+	 * @param millis
+	 * @return
+	 */
+	public static String getFormatedDate(String format, long millis)
+	{
+		Date date = new Date(millis);
+		
+		return null;
+	}
+}

@@ -1,0 +1,69 @@
+package dany.fts;
+
+import java.util.HashMap;
+
+import dany.fts.launch.Start;
+
+public class Game implements Runnable
+{
+	private boolean isRunning;
+	private long prevSecMillis;
+	private int fps;
+	
+	private HashMap<String, String> configMap = new HashMap<String, String>();
+	
+	private Window frame;
+	
+	public Game(String[] args)
+	{
+		this.frame = new Window();
+		run();
+	}
+	
+	@Override
+	public void run()
+	{
+		Instances.logger.info("Starting the game..");
+		this.isRunning = true;
+		this.prevSecMillis = System.currentTimeMillis();
+		
+		while (isRunning)
+		{
+			fps++;
+			if (prevSecMillis + 1000 >= System.currentTimeMillis())
+			{
+				prevSecMillis = System.currentTimeMillis();
+			}
+			
+			try
+			{
+				Thread.sleep(arg0);
+			}
+		}
+		Instances.logger.info("Game stopped");
+		System.exit(0);
+	}
+	
+	/**
+	 * Stops the game
+	 */
+	public void stop()
+	{
+		Instances.logger.warn("Stopping the game..");
+		this.isRunning = false;
+	}
+	
+	public String fps()
+	{
+		return String.valueOf(fps);
+	}
+	
+	/**
+	 * Returns an instance of game
+	 * @return
+	 */
+	public static Game instance()
+	{
+		return Start.getGameInstance();
+	}
+}

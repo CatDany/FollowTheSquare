@@ -1,0 +1,15 @@
+package dany.fts.misc;
+
+public class DateHelper
+{
+	/**
+	 * Formatting example:
+	 * {
+	 *   Format: "yyyy-MM-dd hh:mm:ss",
+	 *   Result: ""
+	 * }
+	 * @param format
+	 * @return
+	 */
+	public static String getFormatedDate(String format)
+}

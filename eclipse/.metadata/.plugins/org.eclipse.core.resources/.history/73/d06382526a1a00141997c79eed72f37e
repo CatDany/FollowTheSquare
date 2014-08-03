@@ -1,0 +1,33 @@
+package dany.fts.configuration;
+
+import java.util.HashMap;
+
+public class Configuration
+{
+	private final HashMap<String, String> map = new HashMap<String, String>();
+	
+	public void put(String key, String value)
+	{
+		map.put(key, value);
+	}
+	
+	public String getString(String key)
+	{
+		return map.get(key);
+	}
+	
+	public boolean getBoolean(String key)
+	{
+		return Boolean.parseBoolean(getString(key));
+	}
+	
+	public int getInteger(String key)
+	{
+		return Integer.parseInt(getString(key));
+	}
+	
+	public long getLong(String key)
+	{
+		return Long.parseLong(getString(key));
+	}
+}

@@ -1,0 +1,64 @@
+package dany.fts.render;
+
+import java.awt.Graphics;
+
+import javax.swing.JPanel;
+
+import dany.fts.Game;
+import dany.fts.Instances;
+
+public class Screen extends JPanel implements Runnable
+{
+	private static final long serialVersionUID = -1289577233244488814L;
+
+	private final Thread threadRender = new Thread(this, "RenderEngine");
+	
+	private long prevSecMillis;
+	private int framesCount = 0;
+	private int fps;
+	
+	public Screen()
+	{
+		threadRender.start();
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g)
+	{
+		g.clearRect(0, 0, getWidth(), getHeight());
+		g.drawString("FPS: " + fps, 10, 20);
+		g.drawString("Max FPS: " + Game.instance().configuration.getInteger("maxfps"), 10, 35);
+		g.drawString("Obtained Lag: " + (100 - (int)(fps / Game.instance().configuration.getInteger("maxfps"))) + "%", 10, 50);
+	}
+	
+	@Override
+	public void run()
+	{
+		Instances.logger.info("Render engine started.");
+		this.prevSecMillis = System.currentTimeMillis();
+		
+		while (Game.instance().isRunning)
+		{
+			framesCount++;
+			
+			repaint();
+			
+			if (System.currentTimeMillis() - 1000 >= prevSecMillis)
+			{
+				prevSecMillis = System.currentTimeMillis();
+				fps = framesCount;
+				framesCount = 0;
+			}
+			
+			try
+			{
+				Thread.sleep(1000 / Game.instance().configuration.getInteger("maxfps"));
+			}
+			catch (InterruptedException t)
+			{
+				Instances.logger.error("Unable to keep FPS in bounds (%s). Thread was interrupted.", Game.instance().configuration.getInteger("maxfps"));
+			}
+		}
+		Instances.logger.info("Render engine stopped.");
+	}
+}

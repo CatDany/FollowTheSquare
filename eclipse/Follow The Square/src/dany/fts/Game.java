@@ -1,0 +1,93 @@
+package dany.fts;
+
+import dany.fts.configuration.Configuration;
+import dany.fts.launch.Start;
+import dany.fts.render.Frame;
+
+public class Game implements Runnable
+{
+	private final Thread threadMain = new Thread(this, "GameEngine");
+	
+	public boolean isRunning;
+	private long prevSecMillis;
+	private int tickCount = 0;
+	private int tps;
+	
+	public Configuration configuration;
+	
+	private Frame frame;
+	
+	public Game(String[] args)
+	{
+		Start.setGameInstance(this);
+		this.isRunning = true;
+		
+		this.configuration = new Configuration();
+		configuration.parseConfiguration(args);
+		
+		this.frame = new Frame();
+	}
+	
+	@Override
+	public void run()
+	{
+		Instances.logger.info("Starting the game..");
+		this.prevSecMillis = System.currentTimeMillis();
+		
+		while (isRunning)
+		{
+			tickCount++;
+			if (prevSecMillis + 1000 >= System.currentTimeMillis())
+			{
+				prevSecMillis = System.currentTimeMillis();
+				tps = tickCount;
+				tickCount = 0;
+			}
+			try
+			{
+				Thread.sleep(1000 / 20);
+			}
+			catch (InterruptedException t)
+			{
+				Instances.logger.error("Unable to keep TPS in bounds (20). Thread was interrupted.", configuration.getInteger("maxfps"));
+			}
+		}
+		Instances.logger.info("Game stopped.");
+		System.exit(0);
+	}
+	
+	/**
+	 * Start the game
+	 */
+	public void start()
+	{
+		threadMain.start();
+	}
+	
+	/**
+	 * Stop the game
+	 */
+	public void stop()
+	{
+		Instances.logger.warn("Stopping the game..");
+		this.isRunning = false;
+	}
+	
+	/**
+	 * Return a main frame of the game
+	 * @return
+	 */
+	public Frame frame()
+	{
+		return frame;
+	}
+	
+	/**
+	 * Return an instance of the game
+	 * @return
+	 */
+	public static Game instance()
+	{
+		return Start.getGameInstance();
+	}
+}

@@ -1,0 +1,11 @@
+package dany.fts.launch;
+
+import dany.fts.Game;
+
+public class Start
+{
+	public static void main(String[] args)
+	{
+		theGame = new Game(args);
+	}
+}

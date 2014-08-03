@@ -1,0 +1,11 @@
+package dany.fts;
+
+import dany.fts.misc.DateHelper;
+
+public class Refs
+{
+	public static final String ID = "FTS";
+	public static final String TRIM_NAME = "FollowTheSquare";
+	public static final String NAME = "Follow The Square";
+	public static final String LOG_FILE = "logs/" + DateHelper.getFormatedDate("yyyy-MM-dd-hh-mm-ss") + ".log";
+}

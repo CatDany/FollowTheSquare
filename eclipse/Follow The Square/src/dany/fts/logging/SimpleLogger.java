@@ -1,0 +1,96 @@
+package dany.fts.logging;
+
+import java.io.File;
+import java.io.PrintWriter;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.util.List;
+
+import dany.fts.misc.DateHelper;
+
+public class SimpleLogger
+{
+	private final String prefix;
+	private final File logFile;
+	
+	public SimpleLogger(String prefix, String logFolder)
+	{
+		this.prefix = prefix;
+		
+		File logFile = new File(logFolder + "\\" + DateHelper.getFormatedDate("yyyy-MM-dd-HH-mm-ss") + ".log");
+		if (!logFile.exists())
+		{
+			try
+			{
+				new File(logFolder).mkdir();
+				logFile.createNewFile();
+			}
+			catch (Throwable t)
+			{
+				t.printStackTrace();
+			}
+		}
+		
+		this.logFile = logFile;
+		
+		info("Logger initialized successfully.");
+	}
+	
+	private void writeToLog(String string)
+	{
+		try
+		{
+			List<String> oldStrings = Files.readAllLines(logFile.toPath(), Charset.defaultCharset());
+			PrintWriter s = new PrintWriter(logFile);
+			for (String i : oldStrings)
+			{
+				s.println(i);
+			}
+			s.println(string);
+			s.close();
+		}
+		catch (Throwable t)
+		{
+			System.err.println(String.format("Unable to write to log! String was '%s'", string));
+			t.printStackTrace();
+		}
+	}
+	
+	private void writeStackTraceToLog(Throwable t)
+	{
+		for (StackTraceElement i : t.getStackTrace())
+		{
+			writeToLog(i.toString());
+		}
+	}
+	
+	public void info(String message, Object... format)
+	{
+		String fmsg = String.format("[%s] [%s] ", DateHelper.getFormatedDate("yyyy-MM-dd HH:mm:ss"), prefix) + String.format(message, format);
+		System.out.println(fmsg);
+		writeToLog(fmsg);
+	}
+	
+	public void warn(String message, Object... format)
+	{
+		String fmsg = String.format("[%s] [WARNING!] [%s] ", DateHelper.getFormatedDate("yyyy-MM-dd HH:mm:ss"), prefix) + String.format(message, format);
+		System.out.println(fmsg);
+		writeToLog(fmsg);
+	}
+	
+	public void error(String message, Object... format)
+	{
+		String fmsg = String.format("[%s] [ERROR] [%s] ", DateHelper.getFormatedDate("yyyy-MM-dd HH:mm:ss"), prefix) + String.format(message, format);
+		System.err.println(fmsg);
+		writeToLog(fmsg);
+	}
+	
+	public void catching(Throwable t)
+	{
+		String fmsg = String.format("[%s] [CATCHING] [%s] ", DateHelper.getFormatedDate("yyyy-MM-dd HH:mm:ss"), prefix) + t.getMessage();
+		System.out.println(fmsg);
+		writeToLog(fmsg);
+		t.printStackTrace();
+		writeStackTraceToLog(t);
+	}
+}

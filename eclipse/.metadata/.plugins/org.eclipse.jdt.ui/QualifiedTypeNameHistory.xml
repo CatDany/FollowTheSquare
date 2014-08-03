@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="dany.fts.launch.Start"/>
+<fullyQualifiedTypeName name="javax.swing.JFrame"/>
+<fullyQualifiedTypeName name="java.awt.event.KeyListener"/>
+<fullyQualifiedTypeName name="java.awt.event.InputEvent"/>
+<fullyQualifiedTypeName name="dany.fts.input.KeyActions"/>
+<fullyQualifiedTypeName name="dany.fts.input.KeyHandler"/>
+<fullyQualifiedTypeName name="dany.fts.Instances"/>
+<fullyQualifiedTypeName name="java.lang.Runnable"/>
+<fullyQualifiedTypeName name="java.util.logging.Logger"/>
+<fullyQualifiedTypeName name="dany.fts.references.Refs"/>
+<fullyQualifiedTypeName name="java.util.logging.Level"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="java.lang.Deprecated"/>
+<fullyQualifiedTypeName name="java.util.logging.FileHandler"/>
+<fullyQualifiedTypeName name="java.util.logging.Handler"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="java.text.DateFormat"/>
+<fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+<fullyQualifiedTypeName name="dany.fts.Window"/>
+<fullyQualifiedTypeName name="java.awt.Color"/>
+<fullyQualifiedTypeName name="dany.fts.misc.DateHelper"/>
+<fullyQualifiedTypeName name="dany.fts.logging.SimpleLogger"/>
+<fullyQualifiedTypeName name="java.io.PrintStream"/>
+<fullyQualifiedTypeName name="java.lang.Throwable"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="dany.fts.configuration.Configuration"/>
+<fullyQualifiedTypeName name="java.lang.InterruptedException"/>
+<fullyQualifiedTypeName name="java.io.OutputStream"/>
+<fullyQualifiedTypeName name="java.io.FileOutputStream"/>
+<fullyQualifiedTypeName name="java.nio.file.Files"/>
+<fullyQualifiedTypeName name="java.nio.charset.Charset"/>
+<fullyQualifiedTypeName name="java.awt.Dimension"/>
+<fullyQualifiedTypeName name="javax.swing.RepaintManager"/>
+<fullyQualifiedTypeName name="javax.swing.JPanel"/>
+<fullyQualifiedTypeName name="dany.fts.Game"/>
+<fullyQualifiedTypeName name="dany.fts.render.Screen"/>
+</qualifiedTypeNameHistroy>

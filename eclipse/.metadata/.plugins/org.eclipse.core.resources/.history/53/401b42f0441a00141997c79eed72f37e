@@ -1,0 +1,8 @@
+package dany.fts;
+
+import javax.swing.JFrame;
+
+public class Window extends JFRame
+{
+
+}

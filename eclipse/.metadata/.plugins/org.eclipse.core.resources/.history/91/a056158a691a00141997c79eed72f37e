@@ -1,0 +1,30 @@
+package dany.fts;
+
+import java.awt.Color;
+import java.awt.Graphics;
+
+import javax.swing.JFrame;
+
+public class Window extends JFrame
+{
+	private static final long serialVersionUID = -8828270686060258254L;
+
+	public Window()
+	{
+		setTitle(Refs.NAME);
+		setSize(600, 600);
+		setResizable(false);
+		setBackground(Color.WHITE);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
+		
+		addKeyListener(Instances.keyHandler);
+	}
+	
+	@Override
+	public void paintComponents(Graphics g)
+	{
+		g.clearRect(0, 0, getWidth(), getHeight());
+		g.drawString(Game.instance().fps(), 10, 10);
+	}
+}
